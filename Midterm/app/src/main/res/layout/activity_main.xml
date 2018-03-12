@@ -1,0 +1,176 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tech.midterm.MainActivity">
+
+    <TextView
+        android:id="@+id/playerScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Score: "
+        app:layout_constraintBottom_toTopOf="@+id/card00"
+        app:layout_constraintEnd_toStartOf="@+id/timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="16dp"
+        android:text="Time: "
+        app:layout_constraintBottom_toTopOf="@+id/card01"
+        app:layout_constraintEnd_toStartOf="@+id/hint"
+        app:layout_constraintStart_toEndOf="@+id/playerScore"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/card12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <ImageButton
+        android:id="@+id/card13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <ImageButton
+        android:id="@+id/card14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <ImageButton
+        android:id="@+id/card15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <ImageButton
+        android:id="@+id/card11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="262dp" />
+
+    <ImageButton
+        android:id="@+id/card10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="262dp" />
+
+    <ImageButton
+        android:id="@+id/card09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="109dp"
+        tools:layout_editor_absoluteY="262dp" />
+
+    <ImageButton
+        android:id="@+id/card08"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="262dp" />
+
+    <ImageButton
+        android:id="@+id/card07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageButton
+        android:id="@+id/card05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageButton
+        android:id="@+id/card06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="190dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageButton
+        android:id="@+id/card04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <ImageButton
+        android:id="@+id/card00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <ImageButton
+        android:id="@+id/card02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <ImageButton
+        android:id="@+id/card03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <ImageButton
+        android:id="@+id/card01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/cardback"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="17dp"
+        android:text="Pick a card"
+        app:layout_constraintBottom_toTopOf="@+id/card02"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
