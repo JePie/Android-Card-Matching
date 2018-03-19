@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     int pickTwoIndex;
     int pickTwoValue;
+    int oldSecondIndex;
 
     boolean fliped[] = new boolean[9];
 
@@ -293,18 +294,24 @@ public class MainActivity extends AppCompatActivity {
             pickOneIndex = -1;
             pickOneValue = -1;
             fliped[cardIndex] = false;
-            hintText.setText("Pick a card");
+            hintText.setText("Pick a card!");
             imageBtns[cardIndex].setImageResource(DRAWABLE_ID[52]);
+            if (oldSecondIndex != -1)
+                imageBtns[oldSecondIndex].setImageResource(DRAWABLE_ID[52]);
 
         }
         else if (pickTwoIndex == -1 && fliped[cardIndex] == false)
         {
             pickTwoIndex = cardIndex;
             pickTwoValue = cards[cardIndex];
+            if (oldSecondIndex != -1)
+                imageBtns[oldSecondIndex].setImageResource(DRAWABLE_ID[52]);
+            oldSecondIndex = cardIndex;
             fliped[cardIndex] = true;
             imageBtns[cardIndex].setImageResource(DRAWABLE_ID[cards[cardIndex]]);
             if (pickOneValue == pickTwoValue) {
                 hintText.setText("Right!");
+                oldSecondIndex = -1;
                 resetCards();
                 score++;
                 scoreText.setText("Score: " + score);
@@ -313,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
                 hintText.setText("Wrong! Pick again...");
                 fliped[cardIndex] = false;
 
-                imageBtns[cardIndex].setImageResource(DRAWABLE_ID[52]);
                 pickTwoIndex = -1;
                 pickTwoValue = -1;
 
@@ -337,6 +343,7 @@ public class MainActivity extends AppCompatActivity {
         pickOneValue = -1;
         pickTwoIndex = -1;
         pickTwoValue = -1;
+        oldSecondIndex = -1;
     }
 
 
