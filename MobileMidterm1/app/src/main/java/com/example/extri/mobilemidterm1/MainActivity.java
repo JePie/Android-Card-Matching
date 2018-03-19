@@ -9,8 +9,10 @@ package com.example.extri.mobilemidterm1;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private int seconds = 30;
 
     private TextView countdownText;
+    private TextView hintText;
+    private TextView scoreText;
 
     private TextView pScore;
 
@@ -26,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView hint;
 
     int cards[] = new int [9];
+
+    int pickOneIndex;
+    int pickOneValue;
+
+    int pickTwoIndex;
+    int pickTwoValue;
+
+    boolean fliped[] = new boolean[9];
 
     static int DRAWABLE_ID[] =
             {
@@ -84,16 +96,8 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.cardback
             };
 
-    private ImageButton card1;
-    private ImageButton card2;
-    private ImageButton card3;
-    private ImageButton card4;
-    private ImageButton card5;
-    private ImageButton card6;
-    private ImageButton card7;
-    private ImageButton card8;
-    private ImageButton card9;
 
+    private ImageButton[] imageBtns = new ImageButton[9];
 
     int randomCard;
     int cardPos;
@@ -103,19 +107,94 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        countdownText = findViewById(R.id.timer);
+        for (int i = 0 ; i < 9 ; i ++)
+        {
+            fliped[i] = false;
+        }
+        imageBtns[0] = (ImageButton) findViewById(R.id.card1);
+        imageBtns[1] = (ImageButton) findViewById(R.id.card2);
+        imageBtns[2] = (ImageButton) findViewById(R.id.card3);
+        imageBtns[3] = (ImageButton) findViewById(R.id.card4);
+        imageBtns[4] = (ImageButton) findViewById(R.id.card5);
+        imageBtns[5] = (ImageButton) findViewById(R.id.card6);
+        imageBtns[6] = (ImageButton) findViewById(R.id.card7);
+        imageBtns[7] = (ImageButton) findViewById(R.id.card8);
+        imageBtns[8] = (ImageButton) findViewById(R.id.card9);
 
-        card1 = (ImageButton) findViewById(R.id.card1);
-        card2 = (ImageButton) findViewById(R.id.card2);
-        card3 = (ImageButton) findViewById(R.id.card3);
-        card4 = (ImageButton) findViewById(R.id.card4);
-        card5 = (ImageButton) findViewById(R.id.card5);
-        card6 = (ImageButton) findViewById(R.id.card6);
-        card7 = (ImageButton) findViewById(R.id.card7);
-        card8 = (ImageButton) findViewById(R.id.card8);
-        card9 = (ImageButton) findViewById(R.id.card9);
+        //Buttons on click listener
+
+        imageBtns[0].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(0);
+        } });
+
+
+        imageBtns[1].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(1);
+        } });
+
+
+        imageBtns[2].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(2);
+        } });
+
+
+        imageBtns[3].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(3);
+        } });
+
+
+        imageBtns[4].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(4);
+        } });
+
+
+        imageBtns[5].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(5);
+        } });
+
+
+        imageBtns[6].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(6);
+        } });
+
+        imageBtns[7].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(7);
+        } });
+
+
+        imageBtns[8].setOnClickListener(new View.OnClickListener()
+        {public void onClick(View v)
+        {
+            pickCard(8);
+        } });
+
+        resetCards();
+        random();
+
+        countdownText = findViewById(R.id.timer);
+        hintText = findViewById(R.id.hint);
+        scoreText = findViewById(R.id.scoreTxt);
+
+
+
 //timer
-      new CountDownTimer(30000, 1000) {
+      new CountDownTimer(1000000, 1000) {
             @Override
             public void onTick(long seconds)
             {
@@ -131,6 +210,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
 
+
+    }
+
+    public void onClickDeclaration()
+    {
 
     }
 
@@ -158,7 +242,10 @@ public class MainActivity extends AppCompatActivity {
                         dupe = true;
                 }
 
-            }   while (dupe = false);
+            }   while (dupe == true);
+
+            tempCards[i] = randomCard;
+
         }
 
         int index ;
@@ -189,6 +276,67 @@ public class MainActivity extends AppCompatActivity {
         }   while (cards[index] != -1);
         cards[index] = tempCards[4];
 
+    }
+
+    public void pickCard(int cardIndex)
+    {
+        if (pickOneIndex == -1 && fliped[cardIndex] == false)
+        {
+            pickOneIndex = cardIndex;
+            pickOneValue = cards[cardIndex];
+            fliped[cardIndex] = true;
+            hintText.setText("Now pick another card");
+            imageBtns[cardIndex].setImageResource(DRAWABLE_ID[cards[cardIndex]]);
+        }
+        else if (pickOneIndex == cardIndex && fliped[cardIndex] == true && pickTwoIndex == -1)
+        {
+            pickOneIndex = -1;
+            pickOneValue = -1;
+            fliped[cardIndex] = false;
+            hintText.setText("Pick a card");
+            imageBtns[cardIndex].setImageResource(DRAWABLE_ID[52]);
+
+        }
+        else if (pickTwoIndex == -1 && fliped[cardIndex] == false)
+        {
+            pickTwoIndex = cardIndex;
+            pickTwoValue = cards[cardIndex];
+            fliped[cardIndex] = true;
+            imageBtns[cardIndex].setImageResource(DRAWABLE_ID[cards[cardIndex]]);
+            if (pickOneValue == pickTwoValue) {
+                hintText.setText("Right!");
+                resetCards();
+                score++;
+                scoreText.setText("Score: " + score);
+            }
+            else {
+                hintText.setText("Wrong! Pick again...");
+                fliped[cardIndex] = false;
+
+                imageBtns[cardIndex].setImageResource(DRAWABLE_ID[52]);
+                pickTwoIndex = -1;
+                pickTwoValue = -1;
+
+            }
+
+
+        }
+
+
+        // Toast.makeText(MainActivity.this, "CardIndex: " + cardIndex + ", CardValue: " + cards[cardIndex], Toast.LENGTH_LONG).show();
+
+    }
+
+    public void resetCards()
+    {
+       // for (int i = 0 ; i < imageBtns.length ; i ++)
+       // {
+       //    imageBtns[i].setImageResource(DRAWABLE_ID[52]);
+       // }
+        pickOneIndex = -1;
+        pickOneValue = -1;
+        pickTwoIndex = -1;
+        pickTwoValue = -1;
     }
 
 
