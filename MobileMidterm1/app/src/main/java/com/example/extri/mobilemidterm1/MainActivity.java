@@ -1,10 +1,11 @@
 
-/*Card Game Midterm
-        John Paul Valdez 101055854
-        Gavin Tang 101089279
-        March 12, 2017
-        Choose 2 cards each turn to match. Clear out the board to win!
-        */
+/*
+Card Game Midterm
+John Paul Valdez 101055854
+Gavin Tang 101089279
+March 12, 2017
+Choose 2 cards each turn to match. Clear out the board to win!
+*/
 package com.example.extri.mobilemidterm1;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -13,19 +14,19 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
+
+
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private int seconds = 30;
 
     private TextView countdownText;
     private TextView hintText;
+
     private TextView scoreText;
-
-
     private int score;
-    private TextView hint;
 
     int cards[] = new int [9];
 
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     int oldSecondIndex;
 
     boolean fliped[] = new boolean[9];
+
+    Button resetButton;
 
     static int DRAWABLE_ID[] =
             {
@@ -95,19 +98,21 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.cardback
             };
 
+    public boolean retry = false;
+
 
     private ImageButton[] imageBtns = new ImageButton[9];
 
-    int randomCard;
-    int cardPos;
+
+    public long time = 30000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for (int i = 0 ; i < 9 ; i ++)
-        {
+
+        for (int i = 0; i < 9; i++) {
             fliped[i] = false;
         }
         imageBtns[0] = (ImageButton) findViewById(R.id.card1);
@@ -122,66 +127,66 @@ public class MainActivity extends AppCompatActivity {
 
         //Buttons on click listener
 
-        imageBtns[0].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(0);
-        } });
+        imageBtns[0].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(0);
+            }
+        });
 
 
-        imageBtns[1].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(1);
-        } });
+        imageBtns[1].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(1);
+            }
+        });
 
 
-        imageBtns[2].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(2);
-        } });
+        imageBtns[2].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(2);
+            }
+        });
 
 
-        imageBtns[3].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(3);
-        } });
+        imageBtns[3].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(3);
+            }
+        });
 
 
-        imageBtns[4].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(4);
-        } });
+        imageBtns[4].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(4);
+            }
+        });
 
 
-        imageBtns[5].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(5);
-        } });
+        imageBtns[5].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(5);
+            }
+        });
 
 
-        imageBtns[6].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(6);
-        } });
+        imageBtns[6].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(6);
+            }
+        });
 
-        imageBtns[7].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(7);
-        } });
+        imageBtns[7].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(7);
+            }
+        });
 
 
-        imageBtns[8].setOnClickListener(new View.OnClickListener()
-        {public void onClick(View v)
-        {
-            pickCard(8);
-        } });
+        imageBtns[8].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pickCard(8);
+            }
+        });
 
         resetCards();
         random();
@@ -190,32 +195,39 @@ public class MainActivity extends AppCompatActivity {
         hintText = findViewById(R.id.hint);
         scoreText = findViewById(R.id.scoreTxt);
 
+        resetButton = findViewById(R.id.ResetBtn);
+
+        //reset button
 
 
 //timer
-      new CountDownTimer(30000, 1000) {
-            @Override
-            public void onTick(long seconds)
+        final CountDownTimer timin = new CountDownTimer(time, 1000) {
+            public void onTick(long second) {
+                countdownText.setText("Time Left: " + second / 1000);
+
+            }
+
+            public void onFinish()
             {
-                countdownText.setText("Time: " + seconds / 1000);
-                if(seconds == 0){
-
-                }
+                resetButton.setVisibility(View.VISIBLE);
+                resetButton.setText("Reset");
             }
 
-            @Override
-            public void onFinish() {
-                hint.setText("Times up!");
-            }
         }.start();
 
-
+        resetButton = findViewById(R.id.ResetBtn);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                for (int x = 0; x < cards.length; x++) {
+                    timin.start();
+                    resetGame();
+                }
+                resetButton.setVisibility(View.INVISIBLE);
+                random();
+            }
+        });
     }
 
-    public void onClickDeclaration()
-    {
-
-    }
 
     public void random()
     {
@@ -326,6 +338,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        if (score == 4) {
+            resetButton.setVisibility(View.VISIBLE);
+            time = 1000;
+        }
 
         // Toast.makeText(MainActivity.this, "CardIndex: " + cardIndex + ", CardValue: " + cards[cardIndex], Toast.LENGTH_LONG).show();
 
@@ -345,12 +361,12 @@ public class MainActivity extends AppCompatActivity {
          for (int i = 0 ; i < imageBtns.length ; i ++)
          {
             imageBtns[i].setImageResource(DRAWABLE_ID[52]);
+             fliped[i] = false;
          }
 
         score = 0;
         scoreText.setText("Score: " + score);
         hintText.setText("Pick a card!");
-
         resetCards();
     }
 
