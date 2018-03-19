@@ -17,14 +17,12 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private int playerScore = 0;
     private int seconds = 30;
 
     private TextView countdownText;
     private TextView hintText;
     private TextView scoreText;
 
-    private TextView pScore;
 
     private int score;
     private TextView hint;
@@ -195,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //timer
-      new CountDownTimer(1000000, 1000) {
+      new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long seconds)
             {
@@ -335,10 +333,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void resetCards()
     {
-       // for (int i = 0 ; i < imageBtns.length ; i ++)
-       // {
-       //    imageBtns[i].setImageResource(DRAWABLE_ID[52]);
-       // }
         pickOneIndex = -1;
         pickOneValue = -1;
         pickTwoIndex = -1;
@@ -346,6 +340,19 @@ public class MainActivity extends AppCompatActivity {
         oldSecondIndex = -1;
     }
 
+    public void resetGame()
+    {
+         for (int i = 0 ; i < imageBtns.length ; i ++)
+         {
+            imageBtns[i].setImageResource(DRAWABLE_ID[52]);
+         }
+
+        score = 0;
+        scoreText.setText("Score: " + score);
+        hintText.setText("Pick a card!");
+
+        resetCards();
+    }
 
 
 }
