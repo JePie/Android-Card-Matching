@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private int score;
     private TextView hint;
 
+    int cards[] = new int [9];
+
     static int DRAWABLE_ID[] =
             {
                     R.drawable.card_1d,
@@ -128,6 +130,64 @@ public class MainActivity extends AppCompatActivity {
                 hint.setText("Times up!");
             }
         }.start();
+
+
+    }
+
+    public void random()
+    {
+        int tempCards[]= new int[5];
+        int randomCard;
+        boolean dupe = false;
+
+        for (int x = 0 ; x < tempCards.length ; x++)
+        {
+            tempCards[x] = -1;
+        }
+
+        for (int i = 0 ; i < tempCards.length ; i++)
+        {
+            dupe = false;
+            do
+            {
+                randomCard = new Random().nextInt(52);
+
+                for (int d = 0 ; d < tempCards.length ; d++)
+                {
+                    if (randomCard == tempCards[d])
+                        dupe = true;
+                }
+
+            }   while (dupe = false);
+        }
+
+        int index ;
+
+        for (int x = 0 ; x < cards.length ; x++)
+        {
+            cards[x] = -1;
+        }
+
+        for (int i = 0 ; i < 4; i++)
+        {
+            do {
+                index = new Random().nextInt(9);
+            }while (cards[index] != -1);
+
+            cards[index] = tempCards[i];
+
+            do {
+                index = new Random().nextInt(9);
+            }   while (cards[index] != -1);
+
+            cards[index] = tempCards[i];
+
+        }
+
+        do {
+            index = new Random().nextInt(9);
+        }   while (cards[index] != -1);
+        cards[index] = tempCards[4];
 
     }
 
