@@ -12,18 +12,13 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private int playerScore = 0;
-    private int countDown = 30;
+    private int seconds = 30;
 
     private TextView countdownText;
-
-    private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 3000; // 30 seconds
-    private boolean timeRunning;
 
     private TextView pScore;
 
@@ -57,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     R.drawable.card_6h,
                     R.drawable.card_6s,
                     R.drawable.card_7d,
-                    R.drawable.card_7c
-                    ,R.drawable.card_7h,
+                    R.drawable.card_7c,
+                    R.drawable.card_7h,
                     R.drawable.card_7s,
                     R.drawable.card_8d,
                     R.drawable.card_8c,
@@ -97,18 +92,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton card8;
     private ImageButton card9;
 
-    private ImageButton imageBtns[] = {
-
-            card1 = (ImageButton) findViewById(R.id.card1),
-            card2 = (ImageButton) findViewById(R.id.card2),
-            card3 = (ImageButton) findViewById(R.id.card3),
-            card4 = (ImageButton) findViewById(R.id.card4),
-            card5 = (ImageButton) findViewById(R.id.card5),
-            card6 = (ImageButton) findViewById(R.id.card6),
-            card7 = (ImageButton) findViewById(R.id.card7),
-            card8 = (ImageButton) findViewById(R.id.card8),
-            card9 = (ImageButton) findViewById(R.id.card9)
-            };
 
     int randomCard;
     int cardPos;
@@ -120,17 +103,25 @@ public class MainActivity extends AppCompatActivity {
 
         countdownText = findViewById(R.id.timer);
 
-
-        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+        card1 = (ImageButton) findViewById(R.id.card1);
+        card2 = (ImageButton) findViewById(R.id.card2);
+        card3 = (ImageButton) findViewById(R.id.card3);
+        card4 = (ImageButton) findViewById(R.id.card4);
+        card5 = (ImageButton) findViewById(R.id.card5);
+        card6 = (ImageButton) findViewById(R.id.card6);
+        card7 = (ImageButton) findViewById(R.id.card7);
+        card8 = (ImageButton) findViewById(R.id.card8);
+        card9 = (ImageButton) findViewById(R.id.card9);
+//timer
+      new CountDownTimer(30000, 1000) {
             @Override
             public void onTick(long seconds)
             {
                 countdownText.setText("Time: " + seconds / 1000);
                 if(seconds == 0){
-                    //reset = new Button()
+
                 }
             }
-
 
             @Override
             public void onFinish() {
