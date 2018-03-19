@@ -1,10 +1,15 @@
 
 /*
-Card Game Midterm
-John Paul Valdez 101055854
-Gavin Tang 101089279
-March 12, 2017
-Choose 2 cards each turn to match. Clear out the board to win!
+*Card Game Midterm
+*John Paul Valdez 101055854
+*Gavin Tang 101089279
+*March 12, 2017
+*Choose 1 card each turn, you have 2 turns to match 2 cards. Clear out the board to win!
+*-----------IMPORTANT-----------*
+* There is a memory problem that freezes and crashes the application
+* when we try to run the Random() function.
+* It works perfectly though.
+* If it crashes on the first "reset" please run it a few times until it doesnt crash
 */
 package com.example.extri.mobilemidterm1;
 import android.os.CountDownTimer;
@@ -13,7 +18,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
 
 
